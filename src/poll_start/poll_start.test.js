@@ -1,13 +1,15 @@
 import React from 'react';
-import App from './App'
+import PollStart from './poll_start'
 import ReactDOM from 'react-dom';
-
+import { BrowserRouter } from 'react-router-dom';
 
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
-        <App />,
+        <BrowserRouter>
+            <PollStart />
+        </BrowserRouter>,
         div
     );
     ReactDOM.unmountComponentAtNode(div);
