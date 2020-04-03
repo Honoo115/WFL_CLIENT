@@ -67,6 +67,7 @@ class App extends Component {
     }],
   }
   handleSubmit = (id) => {
+    // e.preventDefault();
     let selectedRestaurant = this.state.restaurants.filter(restaurant => {
       return (
         restaurant.id === id

@@ -8,12 +8,12 @@ class PollStart extends Component {
         zip: { value: '' },
         redirect: false
     };
-    handleSubmit = (e) => {
+    handleSubmit = (e, uuid) => {
         e.preventDefault();
         if (this.state.city.value.length > 0 || this.state.zip.value.length > 0) {
             this.setState({ redirect: true })
             let pollBody = {
-                uuid: uuidv4(),
+                uuid: uuid,
                 timer: new Date(),
                 city: this.state.city.value,
                 zip: this.state.zip.value
@@ -35,7 +35,8 @@ class PollStart extends Component {
 
 
     render() {
-        if (this.state.redirect) return <Redirect to={`/poll/${uuidv4}`} />;
+        const uuid = uuidv4();
+        if (this.state.redirect) return <Redirect to={`/poll/${uuid}`} />;
         else return (
             <div>
                 <header role="banner">
@@ -45,7 +46,7 @@ class PollStart extends Component {
                 <section>
                     <div>City Name</div>
                     <form
-                        onSubmit={e => this.handleSubmit(e)}>
+                        onSubmit={e => this.handleSubmit(e, uuid)}>
                         <input type="text"
                             id="city-input"
                             onChange={e => this.updateCity(e.target.value)}
