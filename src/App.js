@@ -104,7 +104,7 @@ class App extends Component {
     return (
       <div className="App" >
         <Router>
-          <Route exact path={"/poll"}>
+          <Route exact path={"/"}>
 
             <PollStart />
 
