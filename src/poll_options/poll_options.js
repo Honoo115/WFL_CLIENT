@@ -39,17 +39,16 @@ class PollOptions extends Component {
 
     render() {
 
-        const restaurant = this.state.restaurants[this.state.currentRestaurant]
-        let map = typeof restaurant.lat!="undefined"
-            ? `<iframe
-            src="https://www.google.com/maps/${restaurant.lat},${restaurant.lng}&z=15&output=embed"
-            width="360"
-            height="270"
-            frameborder="0"
-            style="border:0"
-          />`
-            : "";
-
+        let restaurant = this.state.restaurants[this.state.currentRestaurant]
+        // let map = (typeof restaurant !== "undefined")
+        //     ? `${<iframe
+        //         src="https://www.google.com/maps/${restaurant.lat},${restaurant.lng}&z=15&output=embed"
+        //         width="360"
+        //         height="270"
+        //         frameborder="0"
+        //         style="border:0"
+        //     />}`
+        //     : 'Value is undefined';
         return (
             <div>
                 <header role="banner">
@@ -64,23 +63,27 @@ class PollOptions extends Component {
                                 <div>
                                     {restaurant.area}
                                     <div>
-                                        {map}
+                                        {typeof restaurant !== "undefined"
+                                            ? <iframe
+                                                src={`https://www.google.com/maps?q=${restaurant.lat},${restaurant.lng}&z=15&output=embed`}
+                                                width="360"
+                                                height="270"
+                                                frameborder="0"
+                                                style={{ border: 0 }}
+                                            />
+                                            : ''
+                                        }
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
                         : ''}
                     <div>
                         <button onClick={this.handleNext.bind(this)}>Next</button>
-
-
                         <button onClick={() => { this.props.handleSubmit(restaurant.id) }}>VOTE</button>
                         <button onClick={this.props.handleTerminate}>End Poll Temp</button>
                     </div>
                 </section>
-
             </div>
         )
     }
