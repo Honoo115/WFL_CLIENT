@@ -1,6 +1,4 @@
 export default {
-    "id": 1,
-    "name": "Example Poll",
     "uuid": "85251b5c-c0a4-4e08-98fa-4fac3dffa2c3"
     "restaurants": [
       {

@@ -1,28 +1,55 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Redirect } from 'react-router-dom';
+import config from "../config";
 // import { Link } from "react-router-dom";
 class PollStart extends Component {
     state = {
         city: { value: '' },
         zip: { value: '' },
-        redirect: false
     };
     handleSubmit = (e, uuid) => {
         e.preventDefault();
+        console.log(this.state.city.value)
+        console.log(this.state.zip.value)
         if (this.state.city.value.length > 0 || this.state.zip.value.length > 0) {
-            this.setState({ redirect: true })
             let pollBody = {
                 uuid: uuid,
-                timer: new Date(),
                 city: this.state.city.value,
                 zip: this.state.zip.value
             }
-            console.log(pollBody)
+            const url = `${config.API_ENDPOINT}/poll`
+            const options = {
+                method: "POST",
+                body: JSON.stringify(pollBody),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            };
+            fetch(url, options)
+                .then(res => {
+                    if (!res.ok) {
+                        throw new Error("Error, please try again.")
+                    }
+                    return res.json();
+                })
+                .then(resJson => {
+                    this.props.history.push(`/poll/${uuid}`)
+                })
+                .catch(err => {
+                    this.setState({
+                        error: err.message
+                    })
+                })
         } else {
             alert("City or zip is required")
         }
     }
+
+
+
+
+
+
     updateCity(city) {
         this.setState({ city: { value: city } })
     };
@@ -36,13 +63,16 @@ class PollStart extends Component {
 
     render() {
         const uuid = uuidv4();
-        if (this.state.redirect) return <Redirect to={`/poll/${uuid}`} />;
-        else return (
+        return (
             <div>
                 <header role="banner">
                     <h1>Whats For Lunch?</h1>
                 </header>
-
+                <section>
+                    <p>Welcome to the 'What's For Lunch' App! Start by putting in either
+                    the name of a City or a Postal Code below to start a poll.
+                </p>
+                </section>
                 <section>
                     <div>City Name</div>
                     <form

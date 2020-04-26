@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import config from "../config";
+import { Map, GoogleApiWrapper } from 'google-maps-react';
+
+
 
 
 
 class PollOptions extends Component {
+
     state = {
+        restaurants: [],
         currentRestaurant: 0,
     }
+    componentDidMount() {
+        const uuid = this.props.match.params.id
 
-    static defaultProps = { restaurants: [] }
+        fetch(`${config.API_ENDPOINT}/restaurants/${uuid}`)
+            .then(res => res.json())
+            .then(restaurants => {
+                this.setState({
+                    restaurants: restaurants
+                });
+            });
 
+    }
     handleNext() {
         let nextIndex = this.state.currentRestaurant + 1
-        if (nextIndex >= this.props.restaurants.length) {
+        if (nextIndex >= this.state.restaurants.length) {
             nextIndex = 0
         }
         this.setState({
@@ -22,10 +36,21 @@ class PollOptions extends Component {
     }
 
 
+
     render() {
-        const restaurant = this.props.restaurants[this.state.currentRestaurant]
-        if (this.props.redirect) return <Redirect to={`/results/${uuidv4()}`} />;
-        else return (
+
+        const restaurant = this.state.restaurants[this.state.currentRestaurant]
+        let map = typeof restaurant.lat!="undefined"
+            ? `<iframe
+            src="https://www.google.com/maps/${restaurant.lat},${restaurant.lng}&z=15&output=embed"
+            width="360"
+            height="270"
+            frameborder="0"
+            style="border:0"
+          />`
+            : "";
+
+        return (
             <div>
                 <header role="banner">
                     <h1>Whats For Lunch?</h1>
@@ -34,6 +59,17 @@ class PollOptions extends Component {
                     {restaurant ?
                         <div>
                             {restaurant.name}
+                            <div>
+                                {restaurant.address}
+                                <div>
+                                    {restaurant.area}
+                                    <div>
+                                        {map}
+                                    </div>
+
+
+                                </div>
+                            </div>
                         </div>
                         : ''}
                     <div>
@@ -49,4 +85,7 @@ class PollOptions extends Component {
         )
     }
 }
-export default PollOptions;
+
+export default GoogleApiWrapper({
+    apiKey: 'AIzaSyBLnsNugklSnZuKWbk0Ve75GfYBX1Qe1lc'
+})(PollOptions)
