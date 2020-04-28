@@ -15,7 +15,7 @@ class PollStart extends Component {
             let pollBody = {
                 uuid: uuid,
                 city: this.state.city.value,
-                zip: this.state.zip.value
+                postal_code: this.state.zip.value
             }
             const url = `${config.API_ENDPOINT}/poll`
             const options = {

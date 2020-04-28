@@ -23,17 +23,6 @@ class App extends Component {
 
 
 
-  handleSubmit = (id) => {
-    // e.preventDefault();
-    let selectedRestaurant = this.state.restaurants.filter(restaurant => {
-      return (
-        restaurant.id === id
-      )
-    })[0]
-
-    selectedRestaurant.votes ? selectedRestaurant.votes += 1 : selectedRestaurant.votes = 1
-    console.log(this.state.restaurants)
-  }
 
   handleTerminate = (e) => {
     e.preventDefault();
@@ -70,13 +59,12 @@ class App extends Component {
               return (
                 <PollOptions
                   handleTerminate={this.handleTerminate}
-                  handleSubmit={this.handleSubmit}
                   {...routeProps}
-                  />
+                />
               )
             }
-          }
-        />
+            }
+          />
 
 
 
@@ -87,11 +75,21 @@ class App extends Component {
           </Route> */}
 
 
-          <Route exact path={"/results/:id"}>
-            <PollResult
-              winningRestaurant={this.state.winningRestaurant}
-            />
-          </Route>
+          <Route exact path={"/results/:id"}
+            render={(routeProps) => {
+              return (
+                <PollResult
+                  {...routeProps} />
+              )
+            }}
+
+
+
+          />
+
+
+
+
 
 
 

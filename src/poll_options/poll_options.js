@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import config from "../config";
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+
 
 
 
@@ -12,6 +12,7 @@ class PollOptions extends Component {
     state = {
         restaurants: [],
         currentRestaurant: 0,
+        poll: null
     }
     componentDidMount() {
         const uuid = this.props.match.params.id
@@ -20,7 +21,8 @@ class PollOptions extends Component {
             .then(res => res.json())
             .then(restaurants => {
                 this.setState({
-                    restaurants: restaurants
+                    restaurants: restaurants,
+                    poll: uuid
                 });
             });
 
@@ -35,20 +37,48 @@ class PollOptions extends Component {
         })
     }
 
+    handleSubmit = (id) => {
+        // e.preventDefault();
+        let selectedRestaurant = this.state.restaurants.filter(restaurant => {
+            return (
+                restaurant.id === id
+            )
+        })[0]
+        const vote = {
+            restaurant_id: id,
+            poll_id: this.state.poll
+        }
+        const url = `${config.API_ENDPOINT}/votes/${this.state.poll}`
+        const options = {
+            method: "POST",
+            body: JSON.stringify(vote),
+            headers: {
+                "Content-Type":"application/json"
+            }
+        }
+        fetch(url, options)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("Error, please try again")
+            }
+            return res.json();
+        })
+        .then(resJson => {
+            this.props.history.push(`/results/${this.state.poll}`)
+        })
+        .catch(err => {
+            this.setState({
+                error: err.message
+            })
+        })
+        selectedRestaurant.votes ? selectedRestaurant.votes += 1 : selectedRestaurant.votes = 1
+        console.log(this.state.restaurants)
+    }
 
 
     render() {
 
         let restaurant = this.state.restaurants[this.state.currentRestaurant]
-        // let map = (typeof restaurant !== "undefined")
-        //     ? `${<iframe
-        //         src="https://www.google.com/maps/${restaurant.lat},${restaurant.lng}&z=15&output=embed"
-        //         width="360"
-        //         height="270"
-        //         frameborder="0"
-        //         style="border:0"
-        //     />}`
-        //     : 'Value is undefined';
         return (
             <div>
                 <header role="banner">
@@ -80,7 +110,7 @@ class PollOptions extends Component {
                         : ''}
                     <div>
                         <button onClick={this.handleNext.bind(this)}>Next</button>
-                        <button onClick={() => { this.props.handleSubmit(restaurant.id) }}>VOTE</button>
+                        <button onClick={() => { this.handleSubmit(restaurant.id) }}>VOTE</button>
                         <button onClick={this.props.handleTerminate}>End Poll Temp</button>
                     </div>
                 </section>
@@ -89,6 +119,4 @@ class PollOptions extends Component {
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBLnsNugklSnZuKWbk0Ve75GfYBX1Qe1lc'
-})(PollOptions)
+export default PollOptions
