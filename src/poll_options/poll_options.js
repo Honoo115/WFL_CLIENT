@@ -72,7 +72,6 @@ class PollOptions extends Component {
             })
         })
         selectedRestaurant.votes ? selectedRestaurant.votes += 1 : selectedRestaurant.votes = 1
-        console.log(this.state.restaurants)
     }
 
 

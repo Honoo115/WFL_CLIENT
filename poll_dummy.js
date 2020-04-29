@@ -1,3 +1,51 @@
+
+
+
+
+// Assuming you have a restaurants array and a votes array
+let resultMap = {};
+votes.forEach(vote => {
+  if( !resultMap.hasOwnProperty(vote.restaurant_id) ) {
+    let restaurant = restaurants.find(restaurant => restaurant.id === vote.restaurant_id);
+    resultMap[vote.restaurant_id] = {
+      ...restaurant,
+      votes: 1
+    };
+  } else {
+    resultMap[vote.restaurant_id].votes += 1;
+  };
+});
+let results = [];
+for ( const key in resultMap ) {
+  results.push(resultMap[key])
+};
+results.sort((a,b) => b.votes - a.votes);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default {
     "uuid": "85251b5c-c0a4-4e08-98fa-4fac3dffa2c3"
     "restaurants": [
