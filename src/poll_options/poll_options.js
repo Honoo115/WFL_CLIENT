@@ -17,15 +17,20 @@ class PollOptions extends Component {
     componentDidMount() {
         const uuid = this.props.match.params.id
 
-        fetch(`${config.API_ENDPOINT}/restaurants/${uuid}`)
-            .then(res => res.json())
-            .then(restaurants => {
-                this.setState({
-                    restaurants: restaurants,
-                    poll: uuid
+        fetch(`${config.API_ENDPOINT}/restaurants/${uuid}`),
+            fetch(`${config.API_ENDPOINT}/polls/${uuid}`)
+                .then(res => res.json())
+                .then(poll => {
+                    if (new Date(poll.end_time) < new Date()) {
+                        this.props.history.push(`/results/${this.state.poll}`)
+                           }
+                })
+                .then(restaurants => {
+                    this.setState({
+                        restaurants: restaurants,
+                        poll: uuid
+                    });
                 });
-            });
-
     }
     handleNext() {
         let nextIndex = this.state.currentRestaurant + 1
@@ -53,24 +58,31 @@ class PollOptions extends Component {
             method: "POST",
             body: JSON.stringify(vote),
             headers: {
-                "Content-Type":"application/json"
+                "Content-Type": "application/json"
             }
         }
         fetch(url, options)
-        .then(res => {
-            if (!res.ok) {
-                throw new Error("Error, please try again")
-            }
-            return res.json();
-        })
-        .then(resJson => {
-            this.props.history.push(`/results/${this.state.poll}`)
-        })
-        .catch(err => {
-            this.setState({
-                error: err.message
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error("Error, please try again")
+                }
+                else {
+                    return res.json();
+                }
             })
-        })
+            .then(resJson => {
+                if (resJson.hasOwnProperty("msg") && resJson.msg === "You have already voted, click OK to redirect to current standings") {
+                    alert(resJson.msg)
+                    this.props.history.push(`/results/${this.state.poll}`)
+                } else {
+                    this.props.history.push(`/results/${this.state.poll}`)
+                }
+            })
+            .catch(err => {
+                this.setState({
+                    error: err.message
+                })
+            })
         selectedRestaurant.votes ? selectedRestaurant.votes += 1 : selectedRestaurant.votes = 1
     }
 

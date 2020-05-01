@@ -8,7 +8,7 @@ it('renders without crashing', () => {
     const div = document.createElement('div');
     ReactDOM.render(
         <BrowserRouter>
-            <PollResult />
+            <PollResult match={{ params: { id: 1 } }} />
         </BrowserRouter>,
         div
     );

@@ -16,36 +16,6 @@ import config from "./config";
 class App extends Component {
   state = { restaurants: [], polls: [], votes: [] }
 
-
-
-
-
-
-
-
-
-  handleTerminate = (e) => {
-    e.preventDefault();
-    let tempRestaurant = {}
-    let max = 0;
-    for (let i = 0; i < this.state.restaurants.length; i++) {
-      console.log(max)
-      if (this.state.restaurants[i].votes > max) {
-        max = this.state.restaurants[i].votes;
-        tempRestaurant = this.state.restaurants[i]
-      }
-    }
-
-
-
-
-    this.setState({
-      winningRestaurant: tempRestaurant
-    })
-  }
-
-
-
   render() {
     return (
       <div className="App" >
@@ -58,7 +28,6 @@ class App extends Component {
             render={(routeProps) => {
               return (
                 <PollOptions
-                  handleTerminate={this.handleTerminate}
                   {...routeProps}
                 />
               )
@@ -82,9 +51,6 @@ class App extends Component {
                   {...routeProps} />
               )
             }}
-
-
-
           />
 
 
