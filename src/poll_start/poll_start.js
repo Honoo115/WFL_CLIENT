@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import config from "../config";
+import "./poll_start.css"
 // import { Link } from "react-router-dom";
 class PollStart extends Component {
     state = {
@@ -64,17 +65,21 @@ class PollStart extends Component {
     render() {
         const uuid = uuidv4();
         return (
-            <div>
+            <div className="page_wrapper">
                 <header role="banner">
                     <h1>Whats For Lunch?</h1>
                 </header>
                 <section>
                     <p>Welcome to the 'What's For Lunch' App! Start by putting in either
-                    the name of a City or a Postal Code below to start a poll.
-                </p>
+                    the name of a City or a Postal Code below to start a poll. 
+                    Once a poll is started, browse restaurants with the next button. Once you find
+                    a restaurant you like, press the vote button.
+                    
+                    </p>
+                    <p className="splash_warning">NOTE: ONLY RESTAURANTS WITH THE ABILITY TO MAKE ONLINE RESERVATIONS WILL APPEAR IN THE POLL RESULTS</p>
                 </section>
                 <section>
-                    <div>City Name</div>
+                    <div className="cityName">City Name</div>
                     <form
                         onSubmit={e => this.handleSubmit(e, uuid)}>
                         <input type="text"
@@ -82,7 +87,7 @@ class PollStart extends Component {
                             onChange={e => this.updateCity(e.target.value)}
                         />
 
-                        <div>Zip Code</div>
+                        <div className="zipCode">Zip Code</div>
 
                         <input type="text"
                             id="zip-input"
@@ -90,7 +95,7 @@ class PollStart extends Component {
                         />
                         <div>
 
-                            <button type="submit">
+                            <button className="myButton" type="submit">
                                 Start Poll
                                 </button>
 
@@ -98,7 +103,7 @@ class PollStart extends Component {
                         </div>
 
                     </form>
-
+                    <p>NOT ALL CITIES / TOWNS / ZIPCODES WILL RESPOND WITH RESTAURANTS</p>
                 </section>
             </div>
         )

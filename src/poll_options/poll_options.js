@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import config from "../config";
-
+import "./poll_options.css"
 
 
 
@@ -16,21 +15,26 @@ class PollOptions extends Component {
     }
     componentDidMount() {
         const uuid = this.props.match.params.id
+        fetch(`${config.API_ENDPOINT}/poll/${uuid}`)
+            .then(res => res.json())
+            .then(poll => {
+                let expired = new Date(poll.end_time);
+                let now = new Date();
+                if (expired < now) {
+                    console.log("Poll is expired");
+                    alert('The Poll Has Expired');
+                    this.props.history.push(`/results/${this.state.poll}`)
+                }
+            });
 
-        fetch(`${config.API_ENDPOINT}/restaurants/${uuid}`),
-            fetch(`${config.API_ENDPOINT}/polls/${uuid}`)
-                .then(res => res.json())
-                .then(poll => {
-                    if (new Date(poll.end_time) < new Date()) {
-                        this.props.history.push(`/results/${this.state.poll}`)
-                           }
-                })
-                .then(restaurants => {
-                    this.setState({
-                        restaurants: restaurants,
-                        poll: uuid
-                    });
+        fetch(`${config.API_ENDPOINT}/restaurants/${uuid}`)
+            .then(res => res.json())
+            .then(restaurants => {
+                this.setState({
+                    restaurants: restaurants,
+                    poll: uuid
                 });
+            });
     }
     handleNext() {
         let nextIndex = this.state.currentRestaurant + 1
@@ -91,13 +95,13 @@ class PollOptions extends Component {
 
         let restaurant = this.state.restaurants[this.state.currentRestaurant]
         return (
-            <div>
+            <div className="page_wrapper">
                 <header role="banner">
                     <h1>Whats For Lunch?</h1>
                 </header>
                 <section>
                     {restaurant ?
-                        <div>
+                        <div className="restName">
                             {restaurant.name}
                             <div>
                                 {restaurant.address}
@@ -106,10 +110,11 @@ class PollOptions extends Component {
                                     <div>
                                         {typeof restaurant !== "undefined"
                                             ? <iframe
+                                                title="restMap"
                                                 src={`https://www.google.com/maps?q=${restaurant.lat},${restaurant.lng}&z=15&output=embed`}
-                                                width="360"
+                                                width="320"
                                                 height="270"
-                                                frameborder="0"
+                                                frameBorder="0"
                                                 style={{ border: 0 }}
                                             />
                                             : ''
@@ -120,9 +125,8 @@ class PollOptions extends Component {
                         </div>
                         : ''}
                     <div>
-                        <button onClick={this.handleNext.bind(this)}>Next</button>
-                        <button onClick={() => { this.handleSubmit(restaurant.id) }}>VOTE</button>
-                        <button onClick={this.props.handleTerminate}>End Poll Temp</button>
+                        <button className="myButton" onClick={this.handleNext.bind(this)}>Next</button>
+                        <button className="myButton" onClick={() => { this.handleSubmit(restaurant.id) }}>VOTE</button>
                     </div>
                 </section>
             </div>

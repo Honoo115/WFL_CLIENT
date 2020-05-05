@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import config from "../config";
+import "./poll_result.css"
 class PollResult extends Component {
     state = {
         poll: null,
@@ -10,7 +11,7 @@ class PollResult extends Component {
         Promise.all([
             fetch(`${config.API_ENDPOINT}/votes/${uuid}`),
             fetch(`${config.API_ENDPOINT}/restaurants/${uuid}`),
-            fetch(`${config.API_ENDPOINT}/polls/${uuid}`)
+            fetch(`${config.API_ENDPOINT}/poll/${uuid}`)
         ])
             .then(async ([votes, restaurants]) => {
                 const votesJson = await votes.json();
@@ -63,20 +64,20 @@ class PollResult extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="page_wrapper">
                 <header role="banner">
                     <h1>Whats For Lunch</h1>
                 </header>
                 <section>
-                    <div>
-                        Current Standings
-                        {this.state.results.map(results => {
-                        return (
-                            <div>
-                                {results.name} {results.votes} Votes
-                            </div>
-                        )
-                    })}
+                    <div className="curStand">
+                        <h3>Current Standings</h3>
+                        {this.state.results.map((results, index) => {
+                            return (
+                                <div className="curStand" key={index}>
+                                    {results.name} {results.votes} Votes
+                                </div>
+                            )
+                        })}
                     </div>
                 </section>
             </div>

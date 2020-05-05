@@ -5,7 +5,6 @@ import PollStart from './poll_start/poll_start'
 import PollOptions from './poll_options/poll_options'
 // import PollSubmit from './poll_submit/poll_submit'
 import PollResult from './poll_result/poll_result'
-import config from "./config";
 
 
 
