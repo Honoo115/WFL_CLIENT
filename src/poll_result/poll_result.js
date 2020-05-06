@@ -6,6 +6,10 @@ class PollResult extends Component {
         poll: null,
         results: []
     }
+    handleBack = (e) => {
+        // e.preventDefault();
+        this.props.history.push('/')
+    }
     componentDidMount() {
         const uuid = this.props.match.params.id
         Promise.all([
@@ -80,6 +84,7 @@ class PollResult extends Component {
                         })}
                     </div>
                 </section>
+                <button className="myButton" onClick={() => { this.handleBack() }}>Start New Poll?</button>
             </div>
         )
     }
