@@ -70,13 +70,12 @@ class PollStart extends Component {
                     <h1>Whats For Lunch?</h1>
                 </header>
                 <section>
-                    <p>Welcome to the 'What's For Lunch' App! Start by putting in either
-                    the name of a City or a Postal Code below to start a poll. 
-                    Once a poll is started, browse restaurants with the next button. Once you find
-                    a restaurant you like, press the vote button.
+                    <p>Welcome! Start by inputting  either
+                    the name of a City or a Postal Code below and press 'Start Poll' to begin. 
+                    Once a poll is started send the link to your fellow voters! 
                     
                     </p>
-                    <p className="splash_warning">NOTE: ONLY RESTAURANTS WITH THE ABILITY TO MAKE ONLINE RESERVATIONS WILL APPEAR IN THE POLL RESULTS</p>
+                    <p className="splash_warning">ONLY RESTAURANTS WITH ONLINE RESERVATIONS WILL APPEAR</p>
                 </section>
                 <section>
                     <div className="cityName">City Name</div>
@@ -103,7 +102,6 @@ class PollStart extends Component {
                         </div>
 
                     </form>
-                    <p>NOT ALL CITIES / TOWNS / ZIPCODES WILL RESPOND WITH RESTAURANTS</p>
                 </section>
             </div>
         )

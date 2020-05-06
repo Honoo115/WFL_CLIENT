@@ -1,68 +1,33 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# What's for lunch?
 
-## Available Scripts
 
-In the project directory, you can run:
+###### The Link to the live app can be found here! ==> (https://whats-for-lunch.now.sh/) 
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### FRONT PAGE
+<a href="https://ibb.co/285MzwH"><img src="https://i.ibb.co/6vNtK2L/Start.png" alt="Start" border="0"></a>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+### VOTE PAGE
+<a href="https://ibb.co/285MzwH"><img src="https://i.ibb.co/6vNtK2L/Start.png" alt="Start" border="0"></a>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### RESULTS PAGE 
+<a href="https://ibb.co/frm2qnr"><img src="https://i.ibb.co/tYy4QxY/Results.png" alt="Results" border="0"></a>
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For those work teams out there that have trouble deciding on where to go to eat, this app is for you! What's for Lunch is an app that creates a poll
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+that allows its users to vote on where they would like to go from a random selection of restaurants in an area designated by the poll creator!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+First you put in a valid City Name or Zip / Postal Code for an area where you would like to eat with a limited timer on the poll. The current poll timer is 5 Minutes but will be adjusted at a later date for long work days! Once the poll is created you can take the link and send it to your fellow team mebmers for them to vote on. A Poll comes with the name of the restaurant, it's address, and the area it is located ; Complete with a fully functional google map! 
 
-### `npm run eject`
+Once you find a place you like, hit that vote button and it will take you to the current standings page. 
+When the poll expires you can view this standings page to see which restaurant got the most votes and will be declared the winner.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Happy Eating!!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+##### All the code written to create this application was made in Microsoft Visual Studios
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+##### The Coding Languages used where Node for the server side and React for the Client Side. 

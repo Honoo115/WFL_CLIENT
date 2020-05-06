@@ -32,11 +32,14 @@ padding-top: 12px;
 input[type=text]{
 	background-color: white;
 	margin-bottom: 10px;
-	font-size: 20px
+	font-size: 15px
 	}
 .cityName{
-	font-size: 30px
+	font-size: 20px
 }
 .zipCode{
-	font-size: 30px;
+	font-size: 20px;
+}
+h1 {
+	margin: 0
 }

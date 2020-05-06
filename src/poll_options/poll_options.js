@@ -37,15 +37,11 @@ class PollOptions extends Component {
             });
     }
     handleNext() {
-        let nextIndex = this.state.currentRestaurant + 1
-        if (nextIndex >= this.state.restaurants.length) {
-            nextIndex = 0
-        }
+        Math.floor(Math.random() * this.state.restaurants.length)
         this.setState({
-            currentRestaurant: nextIndex
-        })
+            currentRestaurant: Math.floor(Math.random() * this.state.restaurants.length)
+        });
     }
-
     handleSubmit = (id) => {
         // e.preventDefault();
         let selectedRestaurant = this.state.restaurants.filter(restaurant => {
@@ -112,7 +108,7 @@ class PollOptions extends Component {
                                             ? <iframe
                                                 title="restMap"
                                                 src={`https://www.google.com/maps?q=${restaurant.lat},${restaurant.lng}&z=15&output=embed`}
-                                                width="320"
+                                                width="250"
                                                 height="270"
                                                 frameBorder="0"
                                                 style={{ border: 0 }}
