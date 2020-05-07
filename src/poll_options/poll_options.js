@@ -21,7 +21,6 @@ class PollOptions extends Component {
                 let expired = new Date(poll.end_time);
                 let now = new Date();
                 if (expired < now) {
-                    ("Poll is expired");
                     alert('The Poll Has Expired');
                     this.props.history.push(`/results/${this.state.poll}`)
                 }
