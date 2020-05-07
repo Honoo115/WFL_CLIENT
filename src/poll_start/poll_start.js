@@ -10,8 +10,6 @@ class PollStart extends Component {
     };
     handleSubmit = (e, uuid) => {
         e.preventDefault();
-        (this.state.city.value)
-        (this.state.zip.value)
         if (this.state.city.value.length > 0 || this.state.zip.value.length > 0) {
             let pollBody = {
                 uuid: uuid,
