@@ -77,7 +77,7 @@ class PollStart extends Component {
                 </section>
                 <section>
                     <div className="cityName">City Name</div>
-                    <form
+                    <form label="CITY AND POSTAL CODE INPUT"
                         onSubmit={e => this.handleSubmit(e, uuid)}>
                         <input type="text"
                             id="city-input"
