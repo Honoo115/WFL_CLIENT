@@ -55,7 +55,7 @@ class PollResult extends Component {
                 // Sort the results
                 results.sort((a, b) => b.votes - a.votes);
                 //  final results array with only unique restaurants, only restaurants that were voted on, and the highest vote counts at the top
-                console.log(results);
+                (results);
                 this.setState({
                     results: results
                 })
@@ -63,7 +63,7 @@ class PollResult extends Component {
             })
             .catch(function (error) {
                 // if there's an error, log it
-                console.log(error);
+                (error);
             });
     }
     render() {
