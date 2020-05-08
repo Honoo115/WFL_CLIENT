@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import config from "../config";
-import "./poll_start.css"
-// import { Link } from "react-router-dom";
+import "./poll_start.css";
 class PollStart extends Component {
     state = {
         city: { value: '' },
@@ -70,7 +69,7 @@ class PollStart extends Component {
                 <section>
                     <p>Welcome! Start by inputting  either
                     the name of a City or a Postal Code below and press 'Start Poll' to begin. 
-                    Once a poll is started send the link to your fellow voters! 
+                    Once a poll is started send the link URL to your fellow voters! 
                     
                     </p>
                     <p className="splash_warning">ONLY RESTAURANTS WITH ONLINE RESERVATIONS WILL APPEAR</p>

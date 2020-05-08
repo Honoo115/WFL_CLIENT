@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import PollStart from './poll_start/poll_start'
-import PollOptions from './poll_options/poll_options'
-// import PollSubmit from './poll_submit/poll_submit'
-import PollResult from './poll_result/poll_result'
+import PollStart from './poll_start/poll_start';
+import PollOptions from './poll_options/poll_options';
+import PollResult from './poll_result/poll_result';
 
 
 
@@ -37,10 +36,6 @@ class App extends Component {
 
 
 
-
-          {/* <Route exact path={""}>
-            <PollSubmit />
-          </Route> */}
 
 
           <Route exact path={"/results/:id"}

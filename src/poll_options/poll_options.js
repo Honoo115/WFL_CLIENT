@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import config from "../config";
-import "./poll_options.css"
+import "./poll_options.css";
 
 
 
@@ -12,6 +12,9 @@ class PollOptions extends Component {
         restaurants: [],
         currentRestaurant: 0,
         poll: null
+    }
+    handleBack = (e) => {
+        this.props.history.push('/')
     }
     componentDidMount() {
         const uuid = this.props.match.params.id
@@ -28,6 +31,7 @@ class PollOptions extends Component {
 
         fetch(`${config.API_ENDPOINT}/restaurants/${uuid}`)
             .then(res => res.json())
+
             .then(restaurants => {
                 this.setState({
                     restaurants: restaurants,
@@ -87,46 +91,58 @@ class PollOptions extends Component {
 
 
     render() {
+        if (this.state.restaurants.length <= 0) {
+            return (<div>
+                <p className="noRest">No Restaurants within the reserve requirments are associated with that Zip Code / City.
+                Please Try Again.
+                </p>
+                <button className="myButton" onClick={() => { this.handleBack() }}>Start New Poll?</button>
+            </div>
 
-        let restaurant = this.state.restaurants[this.state.currentRestaurant]
-        return (
-            <div className="page_wrapper">
-                <header role="banner">
-                    <h1>Whats For Lunch?</h1>
-                </header>
-                <section>
-                    {restaurant ?
-                        <div className="restName">
-                            {restaurant.name}
-                            <div>
-                                {restaurant.address}
+            )
+        }
+        else {
+            let restaurant = this.state.restaurants[this.state.currentRestaurant]
+            return (
+                <div className="page_wrapper">
+                    <header role="banner">
+                        <h1>Whats For Lunch?</h1>
+                    </header>
+                    <section>
+                        {restaurant ?
+                            <div className="restName">
+                                {restaurant.name}
                                 <div>
-                                    {restaurant.area}
+                                    {restaurant.address}
                                     <div>
-                                        {typeof restaurant !== "undefined"
-                                            ? <iframe
-                                                title="restMap"
-                                                src={`https://www.google.com/maps?q=${restaurant.lat},${restaurant.lng}&z=15&output=embed`}
-                                                width="250"
-                                                height="270"
-                                                frameBorder="0"
-                                                style={{ border: 0 }}
-                                            />
-                                            : ''
-                                        }
+                                        {restaurant.area}
+                                        <div>
+                                            {typeof restaurant !== "undefined"
+                                                ? <iframe
+                                                    title="restMap"
+                                                    src={`https://www.google.com/maps?q=${restaurant.lat},${restaurant.lng}&z=15&output=embed`}
+                                                    width="250"
+                                                    height="270"
+                                                    frameBorder="0"
+                                                    style={{ border: 0 }}
+                                                />
+                                                : ''
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            : ''}
+                        <div>
+                            <button className="myButton" onClick={this.handleNext.bind(this)}>Next</button>
+                            <button className="myButton" onClick={() => { this.handleSubmit(restaurant.id) }}>VOTE</button>
                         </div>
-                        : ''}
-                    <div>
-                        <button className="myButton" onClick={this.handleNext.bind(this)}>Next</button>
-                        <button className="myButton" onClick={() => { this.handleSubmit(restaurant.id) }}>VOTE</button>
-                    </div>
-                </section>
-            </div>
-        )
+                    </section>
+                </div>
+            )
+        }
     }
 }
+
 
 export default PollOptions
