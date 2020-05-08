@@ -5,7 +5,7 @@
 
 
 ### FRONT PAGE
-<a href="<a href="https://ibb.co/NKmG49b"><img src="https://i.ibb.co/0rFzwCv/Start.png" alt="Start" border="0"></a>" alt="Start" border="0"></a>
+<a href="<a href="https://ibb.co/NKmG49b"><img src="https://i.ibb.co/0rFzwCv/Start.png" alt="Start" border="0"></a>"
 
 
 ### VOTE PAGE
