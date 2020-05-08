@@ -106,11 +106,12 @@ class PollOptions extends Component {
             return (
                 <div className="page_wrapper">
                     <header role="banner">
-                        <h1>Whats For Lunch?</h1>
+                        <h1>What's For Lunch?</h1>
                     </header>
                     <section>
                         {restaurant ?
                             <div className="restName">
+                                <p className="extra"> ↑ Share url above to fellow voters ↑</p>
                                 {restaurant.name}
                                 <div>
                                     {restaurant.address}
