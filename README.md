@@ -28,6 +28,6 @@ Happy Eating!!
 
 
 
-##### All the code written to create this application was made in Microsoft Visual Studios
+##### All the code written to create this application was made in Microsoft Visual Studio Code.
 
 ##### The Coding Languages used where Node for the server side and React for the Client Side. 
