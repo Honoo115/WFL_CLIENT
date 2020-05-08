@@ -5,11 +5,11 @@
 
 
 ### FRONT PAGE
-<a href="<a href="https://ibb.co/NKmG49b"><img src="https://i.ibb.co/0rFzwCv/Start.png" alt="Start" border="0"></a>"
+"<a href="https://ibb.co/NKmG49b"><img src="https://i.ibb.co/0rFzwCv/Start.png" alt="Start" border="0"></a>"
 
 
 ### VOTE PAGE
-<a href="https://ibb.co/285MzwH"><img src="https://i.ibb.co/6vNtK2L/Start.png" alt="Start" border="0"></a>
+<a href="https://ibb.co/WsbR8v8"><img src="https://i.ibb.co/TrVNjMj/Votes.png" alt="Votes" border="0"></a>
 
 
 ### RESULTS PAGE 
