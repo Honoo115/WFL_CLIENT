@@ -93,7 +93,7 @@ class PollOptions extends Component {
     render() {
         if (this.state.restaurants.length <= 0) {
             return (<div>
-                <p className="noRest">No Restaurants within the reserve requirments are associated with that Zip Code / City.
+                <p className="noRest">No Restaurants within the online reserveation requirments are associated with that Zip Code / City.
                 Please Try Again.
                 </p>
                 <button className="myButton" onClick={() => { this.handleBack() }}>Start New Poll?</button>
